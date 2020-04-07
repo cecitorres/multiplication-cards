@@ -16,7 +16,7 @@ export const shuffle = array => {
 };
 
 export const random = () => {
-  const randomNumber = Math.floor(Math.random() * 11) + 2;
+  const randomNumber = Math.floor(Math.random() * 9) + 2;
   return randomNumber;
 };
 
