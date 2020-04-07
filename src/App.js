@@ -4,7 +4,7 @@ import { random, updateOptions } from "./utils/general";
 
 const App = () => {
   const [table, setTable] = useState({
-    a: 5,
+    a: 2,
     b: random()
   });
   const [answer, setAnswer] = useState(table.a * table.b);
@@ -44,18 +44,21 @@ const App = () => {
   }
 
   return (
-    <div class="flex flex-col bg-blue-400 justify-center content-center items-center w-full lg:w-3/4 mx-auto my-auto h-full">
-      <div class="w-full h-12">
-        <p class="text-3xl text-center">Practica las tablas del {table.a}</p>
+    <div className="flex flex-col bg-blue-400 justify-center content-center items-center w-full lg:w-3/4 mx-auto my-auto h-screen">
+      <div className="w-full h-12">
+        <p className="text-3xl text-center">Practica las tablas del {table.a}</p>
       </div>
 
-      {/* <div class="flex flex-wrap -mx-3 mb-6"> */}
-      <div class="w-full px-3">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+      {/* <div className="flex flex-wrap -mx-3 mb-6"> */}
+      <div className="w-full px-3">
+        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-state">
           Elige la tabla
         </label>
         <div className="relative">
-          <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state" onChange={updateGame}>
+          <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state" onChange={updateGame}>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
             <option value="5">5</option>
             <option value="6">6</option>
             <option value="7">7</option>
@@ -64,16 +67,21 @@ const App = () => {
           </select>
         </div>
       </div>
-      <CardContainer a={table.a} b={table.b} answers={options} selectAnswer={pickAnswer}/>
+      {points > 0 &&
+        <div className="text-2xl font-bold text-orange-300">
+          Record {points}
+        </div>
+      }
       {won &&
-        <div className="win-container">
-          ¡Correcto!, quieres jugar de nuevo?
-          <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={resetGame}>
-          Reiniciar
+        <div className="win-container flex flex-col justify-center text-center">
+          <p> ¡Correcto! </p>
+          <p>¿Quiéres jugar de nuevo?</p>
+          <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={resetGame}>
+            Siguiente
           </button>
         </div>
       }
-      Record {points}
+      <CardContainer a={table.a} b={table.b} answers={options} selectAnswer={pickAnswer} won={won}/>
 
       {/* <div>Icons made by <a href="https://www.flaticon.com/authors/popcorns-arts" title="Icon Pond">Icon Pond</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */}
     </div>

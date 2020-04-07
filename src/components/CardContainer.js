@@ -1,6 +1,7 @@
 import React from 'react'
 
-const CardContainer = ({ a, b, answers, selectAnswer }) => {
+const CardContainer = ({ a, b, answers, selectAnswer, won }) => {
+    const classBtn = !won ? 'hover border-solid border-4 border-gray-600 bg-orange-300 justify-center content-center cursor-pointer' : 'border-4 border-gray-600 bg-orange-300 text-white font-bold rounded opacity-50 cursor-not-allowed';
     return (
         <div className="w-full px-3">
             {/* <div className="row">
@@ -15,17 +16,17 @@ const CardContainer = ({ a, b, answers, selectAnswer }) => {
                 <div id="divider"></div>
             </div> */}
             <div>
-                <p class="text-6xl text-center">{a} X {b} = ?</p>
+                <p className="text-6xl text-center">{a} X {b} = ?</p>
             </div>
             
-            <div class="relative">
+            <div className="relative">
                 <div className="h-64 grid grid-rows-3 grid-flow-col gap-4">
                     {answers.map((option, idx) =>
-                        <div className="hover border-solid border-4 border-gray-600 bg-orange-300 justify-center content-center cursor-pointer" key={idx} onClick={() => selectAnswer(option)}>
+                        <button className={classBtn} disabled={won} key={idx} onClick={() => selectAnswer(option)}>
                             <h1 className="text-5xl">
                                 {option}
                             </h1>
-                        </div>)}
+                        </button>)}
                 </div>
             </div>
             {/* <div className="row">
